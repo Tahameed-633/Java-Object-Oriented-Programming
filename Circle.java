@@ -1,18 +1,15 @@
 package Package1;
-public class Circle
-{
-	private double radious;
-	public Circle(double radious)
+
+public class Circle extends Shape {
+	public double radious;
+	Circle(double radious)
 	{
 		this.radious=radious;
 	}
-	public double getRadious()
+	public double area()
 	{
-		return radious;
-	}
-	public double getArea()
-	{
+		System.out.print("Area of the circle: ");
 		return Math.PI*radious*radious;
 	}
-	
+
 }

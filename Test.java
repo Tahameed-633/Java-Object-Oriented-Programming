@@ -1,10 +1,14 @@
-package Package2;
+package Package1;
 
 public class Test {
+    public static void main(String[] args) {
+        GeometricObject obj = new Rectangle(4.0, 6.0, "Green");
 
-	public static void main(String[] args) {
-		System.out.print("Hello World!!");
+        
+        System.out.println("Area: " + obj.getArea());
+        System.out.println("Perimeter: " + obj.getPerimeter());
 
-	}
-
+        
+        System.out.println(obj.toString());
+    }
 }
