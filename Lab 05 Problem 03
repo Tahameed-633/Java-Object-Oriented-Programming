@@ -1,0 +1,68 @@
+package prob2;
+
+public class PaySystem {
+	protected double pay_rate;
+	protected double hours;
+	protected PaySystem(double pay_rate,double hours)
+	{
+		this.pay_rate=pay_rate;
+		this.hours=hours;
+	}
+	protected double payment()
+	{
+		return (pay_rate)*hours;
+	}
+	protected void total_payment()
+	{
+		double a=payment();
+		System.out.println("Total payment:"+a);
+	}
+
+}
+
+package prob2;
+
+public class RegularPay extends PaySystem {
+
+	protected RegularPay(double pay_rate, double hours) {
+		super(pay_rate, hours);
+		
+	}
+
+}
+
+package prob2;
+
+public class SpecialPay extends PaySystem {
+
+	protected SpecialPay(double pay_rate, double hours) {
+		super(pay_rate, hours);
+	
+	}
+	protected double payment()
+	{
+		return pay_rate*hours+0.3*pay_rate*hours;
+	}
+	protected void total_payment()
+	{
+		double a=payment();
+		System.out.println("Total payment with commision:"+a);
+	}
+
+
+}
+
+
+package prob2;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		SpecialPay sp=new SpecialPay(2000,5);
+		sp.total_payment();
+		PaySystem ps=new PaySystem(500, 3);
+		ps.total_payment();
+
+	}
+
+}
