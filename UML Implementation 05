@@ -1,0 +1,100 @@
+package pac1;
+public interface Billable {
+public double CalculateBill();
+}
+
+package pac1;
+
+public abstract class Person {
+	private String name;
+	private int id;
+	public Person(String name,int id)
+	{
+		this.name=name;
+		this.id=id;
+	}
+	public String getName()
+	{
+		return name;
+	}
+	public int getID()
+	{
+		return id;
+	}
+	public void display()
+	{
+		System.out.println("Name:"+getName()+"\nID:"+getID());
+	}
+}
+
+package pac1;
+
+public class Doctor extends Person {
+	private String specialization;
+	private double consultationFee;
+	public Doctor(String name, int id,String specialization,double consultationFee) {
+		super(name, id);
+		this.specialization=specialization;
+		this.consultationFee=consultationFee;
+
+	}
+	public double CalculateBill()
+	{
+		return consultationFee;
+	}
+	public String getSpecialization()
+	{
+		return specialization;
+	}
+	public double getConsultationFee()
+	{
+		return consultationFee;
+	}
+	public void display()
+	{
+		System.out.println("Doctor's Name:"+getName()+"\nDoctor ID:"+getID()+"\nDoctor's Specialization:"+getSpecialization()+"\nConsultation Fee:"+CalculateBill());
+	}
+}
+
+package pac1;
+
+public class Patient extends Person {
+	private int days;
+	private double room_charge;
+
+	public Patient(String name, int id,int days,double room_charge) {
+		super(name, id);
+		this.days=days;
+		this.room_charge=room_charge;
+	}
+	public int getDays()
+	{
+		return days;
+	}
+	public double getRoomCharge()
+	{
+		return room_charge;
+	}
+	public double CalculateBill()
+	{
+		return days*room_charge;
+	}
+	public void display()
+	{
+		System.out.println("Patient's Name:"+getName()+"\nPatient ID:"+getID()+"\nDays:"+getDays()+"\nRoom Charge:"+getRoomCharge()+"\nBill:"+CalculateBill());
+	}
+}
+
+package pac1;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		Doctor d=new Doctor("Mahmudul Hassan",101,"Child Specialist",2000);
+		d.display();
+		Patient p=new Patient("Habibullah",201,3,3000);
+		p.display();
+
+	}
+
+}
