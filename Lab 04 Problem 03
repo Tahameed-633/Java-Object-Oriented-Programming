@@ -1,0 +1,33 @@
+package pac3;
+import java.util.Scanner;
+public class WeightCalculator {
+	double age;
+	double height;
+Scanner input=new Scanner(System.in);
+WeightCalculator()
+{
+	System.out.println("Enter age:");
+	age=input.nextDouble();
+	System.out.println("Enter height:");
+	height=input.nextDouble();
+}
+	double rec_weight()
+	{	double r_weight=(height-100+age/10)*0.9;
+		return r_weight;
+	}
+	
+}
+
+package pac3;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		WeightCalculator wc=new WeightCalculator();
+	System.out.println("Recomended weight:"+wc.rec_weight());
+
+	}
+
+}
+
+
