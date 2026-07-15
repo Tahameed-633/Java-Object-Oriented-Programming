@@ -1,0 +1,78 @@
+package prob1;
+
+public abstract class DiscountPolicy {
+	protected abstract double ComputeDiscount(int count,double item_cost);
+
+}
+
+package prob1;
+
+public class BulkDiscount  extends DiscountPolicy{
+	protected int minimum;
+	protected double discount_rate;
+protected BulkDiscount(int minimum,double discount_rate)
+{
+	this.minimum=minimum;
+	this.discount_rate=discount_rate;
+}
+
+@Override
+protected double ComputeDiscount(int count, double item_cost) {
+	if(count>minimum)
+	{
+		item_cost=item_cost-item_cost*(discount_rate/100);
+		return item_cost;
+	}
+	else
+	{
+		return item_cost;
+	}
+	
+}
+
+}
+package prob1;
+
+public class OtherDiscount extends DiscountPolicy
+{
+
+	@Override
+	protected double ComputeDiscount(int count, double item_cost) {
+		if(count>=1 && count<=2)
+		{
+			return item_cost;
+		}
+		else if(count>=3 && count<=5)
+		{
+			return item_cost-item_cost*(10.0/100);
+		}
+		else if(count>=6 && count<=8)
+		{
+			return item_cost-item_cost*(20.0/100);
+		}
+		else
+		{
+			return item_cost-item_cost*(30.0/100);
+		}
+		
+	}
+
+}
+
+package prob1;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		BulkDiscount bd=new BulkDiscount(5,10);
+		
+		System.out.println("Total cost with/without discount="+bd.ComputeDiscount(7, 500));
+		OtherDiscount od=new OtherDiscount();
+		System.out.println("Total cost with/without discount="+od.ComputeDiscount(9, 500));
+
+	}
+
+}
+
+
+
