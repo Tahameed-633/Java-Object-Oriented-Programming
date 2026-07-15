@@ -1,0 +1,44 @@
+package pac4;
+
+public class Coordinate {
+	private double x;
+	private double y;
+	Coordinate(double x,double y)
+	{
+		this.x=x;
+		this.y=y;
+	}
+	void setX(double x)
+	{
+		this.x=x;
+	}
+	double getX()
+	{
+		return x;
+	}
+	void setY(double y)
+	{
+		this.y=y;
+	}
+	double getY()
+	{
+		return y;
+	}
+
+
+}
+package pac4;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		Coordinate c=new Coordinate(10,5.5);
+		System.out.println("X="+c.getX()+" Y="+c.getY());
+		c.setX(5);
+		c.setY(2);
+		System.out.println("X="+c.getX()+" Y="+c.getY());
+
+	}
+
+}
+
