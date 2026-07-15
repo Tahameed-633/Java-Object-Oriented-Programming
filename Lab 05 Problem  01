@@ -1,0 +1,41 @@
+package prob1;
+public class Organism {
+	protected String initial_size;
+	protected String growth_rate;
+	protected Organism(String initial_size,String growth_rate)
+	{
+		this.initial_size=initial_size;
+		this.growth_rate=growth_rate;
+	}
+	}
+package prob1;
+
+public class Animal extends Organism {
+	protected  String eating_amount;
+
+	protected Animal(String initial_size, String growth_rate,String eating_amount) {
+		super(initial_size, growth_rate);
+		this.eating_amount=eating_amount;
+		
+	}
+	protected void display()
+	{
+		System.out.println("Initial Size:"+initial_size);
+		System.out.println("Growth Rate:"+growth_rate);
+		System.out.println("Eating Amount:"+eating_amount);
+	}
+	
+
+}
+
+package prob1;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		Animal a=new Animal("Small","Well","Medium");
+		a.display();
+
+	}
+
+}
