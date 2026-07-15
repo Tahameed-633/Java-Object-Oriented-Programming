@@ -1,0 +1,108 @@
+package pac1;
+
+public interface Insurable {
+	public double CalculateInsurance();
+
+}
+
+package pac1;
+public abstract class Vehicle implements Insurable {
+	private String brand;
+	private double speed;
+	
+	public Vehicle(String brand,double speed)
+	{
+		this.brand=brand;
+		this.speed=speed;
+	}
+	public String getBrand()
+	{
+		return brand;
+	}
+	public void setBrand(String brand)
+	{
+		this.brand=brand;
+	}
+	public double getSpeed()
+	{
+		return speed;
+	}
+	public void setSpeed(double speed)
+	{
+		this.speed=speed;
+	}
+	public abstract double CalculateFuel(int hours);
+	public String toString()
+	{
+		return "Car Brand:"+getBrand()+"\nCar Speed:"+getSpeed();
+	}
+}
+
+package pac1;
+
+public class Car extends Vehicle {
+	private int seats;
+	public Car(int seats,String brand,double speed)
+	{
+		super(brand,speed);
+		this.seats=seats;
+		
+	}
+	@Override
+	public double CalculateInsurance() {
+		
+		return 5000+(seats*500);
+	}
+	@Override
+	public double CalculateFuel(int hours) {
+		
+		return getSpeed()*hours*5;
+	}
+	public String toString()
+	{
+		return "Car Brand:"+getBrand()+"\nCar Speed:"+getSpeed()+"Km/h"+"\nInsurance:"+CalculateInsurance()+"BDT";
+	}
+}
+
+package pac1;
+
+public class MotorCycle extends Vehicle {
+	private int enginecc;
+
+	public MotorCycle(String brand, double speed,int enginecc) {
+		super(brand, speed);
+		this.enginecc=enginecc;
+	}
+
+	@Override
+	public double CalculateInsurance() {
+		
+		return 2000+(enginecc*3);
+	}
+
+	@Override
+	public double CalculateFuel(int hours) {
+		
+		return getSpeed()*hours*2;
+	}
+	public String toString()
+	{
+		return "Motorcycle Brand:"+getBrand()+"\nMotorcycle Speed:"+getSpeed()+"km/h"+"\nInsurance:"+CalculateInsurance()+"BDT";
+	}
+}
+
+package pac1;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		Car c=new Car(4,"Toyota",12);
+		System.out.println(c.toString());
+		System.out.println("Fuel:"+c.CalculateFuel(2)+"L");
+		MotorCycle m=new MotorCycle("Royal Enfield",5,200);
+		System.out.println(m.toString());
+		System.out.println("Fuel:"+m.CalculateFuel(2)+"L");
+
+	}
+
+}
