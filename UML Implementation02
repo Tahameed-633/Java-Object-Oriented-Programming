@@ -1,0 +1,53 @@
+package pac5;
+
+public class Employee {
+	protected double salary;
+	protected void work()
+	{
+		System.out.println("-----Employee Work-----");
+	}
+	protected void  getSalary(double salary)
+	{
+		System.out.println("Employee Salary:");
+		
+	}
+	}
+
+package pac5;
+
+public class HRManager extends Employee {
+	protected void work()
+	{
+		System.out.println("-----Employee Work-----");
+		System.out.println("Finding,Interviewing and Managing Employees");
+	}
+	protected void getSalary(double salary)
+	{
+		System.out.println("Employee Salary:");
+		System.out.println("HR Manager's salary is:"+salary);
+	}
+	protected void addEmployee(String name,String designation,double salary)
+	{
+		System.out.println("New Employee name:"+name);
+		System.out.println("New Employee designation:"+designation);
+		System.out.println("New Employee salary:"+salary);
+	}
+
+}
+
+package pac5;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		Employee e=new Employee();
+		e.work();
+		e.getSalary(80000);
+		HRManager h=new HRManager();
+		h.work();
+		h.getSalary(80000);
+		h.addEmployee("Mahmudul Hassan","Senior ML Engineer",70000);
+
+	}
+
+}
