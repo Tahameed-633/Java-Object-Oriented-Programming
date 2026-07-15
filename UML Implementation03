@@ -1,0 +1,83 @@
+package pac9;
+
+public abstract class Employee {
+	private String name;
+	private int id;
+	public Employee()
+	{
+		
+	}
+	public Employee(String name,int id)
+	{
+		this.name=name;
+		this.id=id;
+	}
+	public String getName()
+	{
+		return name;
+	}
+	public int getID()
+	{
+		return id;
+	}
+	public String toString()
+	{
+		return "Employee Name:"+name+"\nEmployee ID:"+id;
+	}
+	public abstract double getSalary();
+
+}
+
+package pac9;
+
+public class Manager extends Employee {
+	private double bonus;
+	public Manager(String name,int id,double bonus)
+	{	super(name,id);
+		this.bonus=bonus;
+	}
+	public double getSalary()
+	{
+		return 50000+bonus;
+	}
+	public String toString()
+	{
+		return "Employee Name:"+getName()+"\nEmployee ID:"+getID()+"\nEmployee's(Manager) Salary:"+getSalary();
+	}
+
+}
+
+package pac9;
+
+public class Developer extends Employee{
+	private int overtime;
+	public Developer(String name,int id,int overtime)
+	{
+		super(name,id);
+		this.overtime=overtime;
+	}
+	public double getSalary()
+	{
+		return 30000+overtime*500;
+	}
+	public String toString()
+	{
+		return "Employee Name:"+getName()+"\nEmployee ID:"+getID()+"\nEmployee's(Developer) Salary:"+getSalary();
+	}
+	
+}
+
+package pac9;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		Manager m= new Manager("Kamruzzaman",101,8000);
+		System.out.println(m.toString());
+		Developer d=new Developer("Taukir Islam",102,4);
+		System.out.println(d.toString());
+		
+
+	}
+
+}
