@@ -1,0 +1,48 @@
+package pac2;
+
+public class Payment {
+	double amount;
+	String ch_num;
+	String card_type;
+	String h_name;
+	String exp_date;
+	String val_code;
+	Payment(double amount)
+	{
+		this.amount=amount;
+		System.out.println("Amount="+amount);
+	}
+	Payment(double amount,String ch_num)
+	{
+		this.amount=amount;
+		this.ch_num=ch_num;
+		System.out.println("Cheque Number="+ch_num);
+		System.out.println("Amount="+amount);
+	}
+	Payment(double amount,String card_type,String h_name,String exp_date,String val_code)
+	{
+		this.amount=amount;
+		this.card_type=card_type;
+		this.h_name=h_name;
+		this.exp_date=exp_date;
+		this.val_code=val_code;
+		System.out.println("Card Type="+card_type);
+		System.out.println("Card Holder Name="+h_name);
+		System.out.println("Expiry Date="+exp_date);
+		System.out.println("Validation Code="+val_code);
+	}
+
+}
+
+package pac2;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		Payment p1=new Payment(50000);
+		Payment p2=new Payment(90000,"125478962");
+		Payment p3=new Payment(80000,"Visa","Khalid Mahmud Arifin","7/10/28","dfh42");
+
+	}
+
+}
