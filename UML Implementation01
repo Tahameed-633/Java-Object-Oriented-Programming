@@ -1,0 +1,187 @@
+package pac7;
+public abstract class Payment
+{
+	protected int PaymentID;
+	protected double amount;
+	public abstract void  ProcessPayment();
+	public double getAmount()
+	{
+		return amount;
+	}
+	public void setAmount(double amount)
+	{
+		this.amount=amount;
+	}
+}
+
+package pac7;
+
+public class CreditCardPayment extends Payment {
+	private String cardNumber;
+	private String bankName;
+	private double balance;
+	public CreditCardPayment(String cardNumber,String bankName,double balance)
+	{
+		this.cardNumber=cardNumber;
+		this.bankName=bankName;
+		this.balance=balance;
+		
+	}
+	public void setAmount(double amount)
+	{
+		this.amount=amount;
+	}
+
+	@Override
+	public void ProcessPayment() {
+		
+		System.out.println("\t\tCredit Card Payment\t\t");
+		
+		if(cardNumber.length()!=16)
+		{
+			System.out.println("Invalid Card Number length!");
+			return;
+		}
+		
+		for(int i=0;i<cardNumber.length();i++)
+		{
+			char ch=cardNumber.charAt(i);
+			if(!Character.isDigit(ch))
+			{
+				System.out.println("Invalid Card Number!");
+				return;
+			}
+			
+		}
+		System.out.println("Valid card number!");
+		
+		
+		if(bankName.equalsIgnoreCase("BRAC BANK") ||bankName.equalsIgnoreCase("CITY BANK") || bankName.equalsIgnoreCase("DBBL"))
+		{
+			System.out.println("Valid Bank!");
+			if(balance>=getAmount())
+			{
+				balance=balance-getAmount();
+				System.out.println("Payment Successful!");
+			}
+			else
+			{
+				System.out.println("Insufficient balance!");
+			}
+			
+		}
+		else
+		{
+			System.out.println("Invalid bank!");
+			return;
+		}
+	}
+
+}
+
+package pac7;
+
+public class MobileBankPayment extends Payment {
+	protected String WalletNumber;
+	protected String Provider;
+	protected double balance;
+	protected MobileBankPayment(String WalletNumber,String Provider,double balance)
+	{
+		this.WalletNumber=WalletNumber;
+		this.Provider=Provider;
+		this.balance=balance;
+	}
+	public void setAmount(double amount)
+	{
+		this.amount=amount;
+	}
+	@Override
+	public void ProcessPayment() 
+	{
+		
+		System.out.println("\t\tMobile Bank Payment\t\t");
+		if(WalletNumber.length()!=11)
+		{
+			System.out.println("Invalid Wallet Number!");
+			return;
+		}
+		for(int i=0;i<WalletNumber.length();i++)
+		{
+			char ch=WalletNumber.charAt(i);
+			if(!Character.isDigit(ch))
+			{
+				System.out.println("Invalid Wallet Number!");
+				return;
+			}
+		}
+		System.out.println("Valid Wallet Number!");
+		if(Provider.equalsIgnoreCase("Bkash") || Provider.equalsIgnoreCase("Nagad") || Provider.equalsIgnoreCase("Rocket"))
+		{
+			System.out.println("Valid Provider!");
+			if(balance>=getAmount())
+			{
+				balance=balance-getAmount();
+				System.out.println("Payment Successful!");
+			}
+			else
+			{
+				System.out.println("Insufficient balance!");
+			}
+			
+		}
+		else
+		{
+			System.out.println("Invalid provider!");
+			return;
+		}
+		
+	}
+	}
+
+package pac7;
+
+public class CashOnDelivery extends Payment {
+	protected double balance;
+	protected CashOnDelivery(double balance)
+	{
+		this.balance=balance;
+	}
+	public void setAmount(double amount)
+	{
+		this.amount=amount;
+	}
+	@Override
+	public void ProcessPayment() {
+		System.out.println("\t\tCash On Delivery\t\t");
+		if(balance>=getAmount())
+		{
+			balance=balance-getAmount();
+			System.out.println("Payment Successful!");
+		}
+		else
+		{
+			System.out.println("Insufficient balance!");
+		}
+		
+	}
+	
+	}
+
+package pac7;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		CreditCardPayment cp=new CreditCardPayment("1234567890654123","BRAC BANK",7000);
+		cp.setAmount(2000);
+		cp.ProcessPayment();
+		MobileBankPayment mbp=new MobileBankPayment("01331529976","Bkash",8000);
+		mbp.setAmount(3500);
+		mbp.ProcessPayment();
+		CashOnDelivery cod=new CashOnDelivery(9000);
+		cod.setAmount(6000);
+		cod.ProcessPayment();
+
+	}
+
+}
