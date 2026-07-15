@@ -1,0 +1,123 @@
+package pac1;
+public interface Discountable {
+	public double CalculateDiscount();
+
+}
+
+package pac1;
+public class Product implements Discountable{
+	private String name;
+	private double price;
+	private double discount;
+	public Product(String name,double price,double discount)
+	{
+		this.name=name;
+		this.price=price;
+		this.discount=discount;
+	}
+	@Override
+	public double CalculateDiscount() {
+	return price-price*(discount/100);
+	}
+	public double getPrice()
+	{
+		return price;
+	}
+	public String getName()
+	{
+		return name;
+	}
+	public double getDiscount()
+	{
+		return discount;
+	}
+	public void final_price()
+	{
+		System.out.println("Final price with discount="+CalculateDiscount());
+	}
+	public void display()
+	{
+		System.out.println("Product Name:"+name+"\nPrice="+price+"\nFinal Price After Discount="+CalculateDiscount());
+	}
+}
+
+package pac1;
+
+public class Laptop extends Product {
+
+	public Laptop(String name, double price, double discount) {
+		super(name, price, discount);
+		}
+	public double CalculateDiscount() {
+		return getPrice()-getPrice()*(getDiscount()/100);
+		}
+	public void final_price()
+	{
+		System.out.println("Final price with discount="+CalculateDiscount());
+	}
+	public void display()
+	{
+		System.out.println("Laptop Name:"+getName()+"\nPrice="+getPrice()+"BDT"+"\nFinal Price After Discount="+CalculateDiscount()+"BDT");
+	}
+}
+
+package pac1;
+
+public class Mobile extends Product {
+
+	public Mobile(String name, double price, double discount) {
+		super(name, price, discount);
+		}
+	public double CalculateDiscount() {
+		return getPrice()-getPrice()*(getDiscount()/100);
+		}
+	public void final_price()
+	{
+		System.out.println("Final price with discount="+CalculateDiscount());
+	}
+	public void display()
+	{
+		System.out.println("Mobile Name:"+getName()+"\nPrice="+getPrice()+"BDT"+"\nFinal Price After Discount="+CalculateDiscount()+"BDT");
+	}
+}
+package pac1;
+
+public class Book extends Product {
+
+	public Book(String name, double price,double discount) 
+	{
+		super(name, price,discount);
+	}
+	public double CalculateDiscount() {
+		return getPrice()-getPrice()*(getDiscount()/100);
+		}
+	public void final_price()
+	{
+		System.out.println("Final price with discount="+CalculateDiscount());
+	}
+	public void display()
+	{
+		System.out.println("Book Name:"+getName()+"\nPrice="+getPrice()+"BDT"+"\nFinal Price After Discount="+CalculateDiscount()+"BDT");
+	}
+}
+
+package pac1;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		Book b=new Book("Introduction To C",10000,10);
+		b.display();
+		//b.final_price();
+		Laptop l=new Laptop("Asus",110000,15);
+		l.display();
+		//l.final_price();
+		
+		Mobile m=new Mobile("Samsung Galaxy A72",35000,5);
+		
+		m.display();
+		//m.final_price();
+
+	}
+
+}
