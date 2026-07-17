@@ -1,0 +1,166 @@
+                    <<abstract>>
+                      FoodItem
+--------------------------------------------------
+- name : String
+- price : double
+--------------------------------------------------
++ FoodItem(name:String, price:double)
++ getName() : String
++ getPrice() : double
++ calculatePrice() : double
+--------------------------------------------------
+
+              ▲
+      -------------------------
+      |                       |
+      |                       |
+   Pizza                 Burger
+------------------     -------------------
+- size : String        - cheese : boolean
+------------------     -------------------
++ Pizza(...)           + Burger(...)
++ calculatePrice()     + calculatePrice()
+
+
+               <<interface>>
+                Deliverable
+-----------------------------------
++ deliveryCharge():double
+-----------------------------------
+
+             ▲                ▲
+             |                |
+          Pizza            Burger
+
+package pac1;
+
+package pac1;
+
+public abstract class FoodItem {
+	private String name;
+	private double price;
+	public FoodItem(String name,double price)
+	{
+		this.name=name;
+		this.price=price;
+	}
+	public String getName()
+	{
+		return name;
+	}
+	public double getPrice()
+	{
+		return price;
+	}
+	public abstract double calculatePrice();
+	
+}
+
+package pac1;
+
+public interface Deliverable {
+public double deliveryCharge();
+}
+
+
+package pac1;
+import java.util.Scanner;
+public class Pizza extends FoodItem implements Deliverable{
+private String size;
+private int distance;
+public Pizza(String size,String name,double price,int distance)
+{
+	super(name,price);
+	this.size=size;
+	this.distance=distance;
+}
+public double calculatePrice()
+{
+	if(size.equalsIgnoreCase("Small"))
+	{
+		return getPrice();
+	}
+	else if(size.equalsIgnoreCase("Medium"))
+	{
+		return getPrice()+100;
+	}
+	else
+	{
+		return getPrice()+200;
+	}
+}
+public double deliveryCharge()
+{   
+	return distance*20;
+}
+public String getSize()
+{
+	return size;
+}
+
+}
+
+package pac1;
+
+public class Burger extends FoodItem implements Deliverable {
+private boolean cheese;
+private int distance;
+public Burger(String name,double price,boolean cheese,int distance)
+{
+	super(name,price);
+	this.cheese=cheese;
+	this.distance=distance;
+}
+public double calculatePrice()
+{
+	if(cheese)
+	{
+		return getPrice()+80;
+	}
+	else
+	{
+		return getPrice();
+	}
+}
+public double deliveryCharge()
+{
+	return distance*20;
+}
+
+}
+
+package pac1;
+import java.util.Scanner;
+import java.util.ArrayList;
+public class Tester {
+
+	public static void main(String[] args) {
+		Scanner input=new Scanner(System.in);
+		String name,size;
+		double price;
+		int distance;
+		boolean cheese;
+		ArrayList<Pizza> pizza=new ArrayList<>();
+		for(int i=0;i<2;i++)
+		{
+			System.out.println("Enter Food Item Name:");
+			name=input.nextLine();
+			System.out.println("Enter price:");
+			price=input.nextDouble();
+			input.nextLine();
+			System.out.println("Enter size:");
+			size=input.nextLine();
+			System.out.println("Enter Delivery Distance:");
+			distance=input.nextInt();
+			input.nextLine();
+			pizza.add(new Pizza(size,name,price,distance));
+		}
+		System.out.println("********Pizza*******");
+		for(Pizza p:pizza)
+		{
+			
+			System.out.println("Name:"+p.getName()+"\tPrice:"+p.getPrice()+"\tSize:"+p.getSize()+"\tPrice:"+p.calculatePrice()+"\tDelivery Charge:"+p.deliveryCharge());
+		}
+	}
+
+}
