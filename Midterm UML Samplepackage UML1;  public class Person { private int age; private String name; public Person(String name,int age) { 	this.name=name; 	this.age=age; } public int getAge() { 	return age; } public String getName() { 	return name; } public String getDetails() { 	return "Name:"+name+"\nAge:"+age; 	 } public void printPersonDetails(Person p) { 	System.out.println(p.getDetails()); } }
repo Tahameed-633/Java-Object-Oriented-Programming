@@ -1,0 +1,79 @@
+package UML1;
+public class Person {
+private int age;
+private String name;
+public Person(String name,int age)
+{
+	this.name=name;
+	this.age=age;
+}
+public int getAge()
+{
+	return age;
+}
+public String getName()
+{
+	return name;
+}
+public String getDetails()
+{
+	return "Name:"+name+"\nAge:"+age;
+	
+}
+public void printPersonDetails(Person p)
+{
+	System.out.println(p.getDetails());
+}
+}
+
+package UML1;
+
+public class Actor extends Person {
+private String role;
+public Actor(String name,int age,String role)
+{
+	super(name,age);
+	this.role=role;
+}
+public String getRole()
+{
+	return role;
+}
+
+public String getDetails()
+{
+	return "Name:"+getName()+"\nAge:"+getAge()+"\nRole:"+getRole();
+}
+}
+
+package UML1;
+
+public class Director  extends Person {
+	private String genre;
+	public Director(String name,int age,String genre)
+	{
+		super(name,age);
+		this.genre=genre;
+	}
+	public String getGenre()
+	{
+		return genre;
+	}
+	public String getDetails()
+	{
+		return "Name:"+getName()+"\nAge:"+getAge()+"\nGenre:"+getGenre();
+	}
+}
+
+package UML1;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		Actor a=new Actor("Atik",22,"Hero");
+		System.out.println(a.getDetails());
+
+	}
+
+}
+
