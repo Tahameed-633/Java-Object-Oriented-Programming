@@ -1,0 +1,293 @@
+package student_management_system;
+
+public class Course {
+    private String course_code;
+    private String course_name;
+    private double credit;
+    private Department dept;
+    
+    public Course(String course_code, String course_name, double credit, Department dept)
+    {
+        this.course_code = course_code;
+        this.course_name = course_name;
+        this.credit = credit;
+        this.dept = dept;
+    }
+    
+    public void course_info()
+    {
+        System.out.println("Course Code: " + course_code);
+        System.out.println("Course Title: " + course_name);
+        System.out.println("Credit: " + credit);
+    }
+    
+    public String get_course_code()
+    {
+        return course_code;
+    }
+}
+
+package student_management_system;
+public class Department
+{
+    private String dept_name;
+    private int dept_id;
+    
+    public Department(String dept_name) 
+    {
+        this.dept_name = dept_name;
+    }
+    
+    public void dept_info()
+    {
+        System.out.println("....................");
+        System.out.println("Department:" + dept_name);
+    }
+    
+    public int get_dept_id()
+    {
+        return dept_id;
+    }
+}
+
+package student_management_system;
+import java.util.ArrayList;
+public class Student
+{
+    private String name;
+    private int id;
+    private double cgpa;
+    private Department dept;
+    public ArrayList<Course> courses = new ArrayList<>();
+    
+    public Student(String name, int id, double cgpa, Department dept)
+    {
+        this.name = name;
+        this.id = id;
+        this.cgpa = cgpa;
+        this.dept = dept;
+    }
+    
+    public void add_course(Course c)
+    {
+        courses.add(c);
+    }
+    
+    public void student_info()
+    {
+        System.out.println("....................");
+        System.out.println("Student name: " + name);
+        System.out.println("Student ID: " + id);
+        System.out.println("Student CGPA: " + cgpa);
+        dept.dept_info();
+    }
+    
+    public int get_id()
+    {
+        return id;
+    }
+}
+
+package student_management_system;
+import java.util.ArrayList;
+import java.util.Scanner;
+public class functions {
+	ArrayList<Student> student=new ArrayList<>();
+	ArrayList<Course> courses=new ArrayList<>();
+	Scanner input=new Scanner(System.in);
+	public void add_student()
+	{
+		
+		
+		System.out.println("Enter student name:");
+		String name=input.nextLine();
+		System.out.println("Enter student ID:");
+		int id=input.nextInt();
+		System.out.println("Enter student CGPA:");
+		double cgpa=input.nextDouble();
+		input.nextLine();
+		System.out.println("Enter department name:");
+		String dept=input.nextLine();
+		
+		Department d=new Department(dept);
+		Student s=new Student(name,id,cgpa,d);
+		student.add(s);
+		System.out.println("Student added successfully!");
+		
+	}
+	public void show_all_students()
+	{
+		if(student.isEmpty())
+		{
+			System.out.println("No student to show!");
+			return;
+		}
+		else
+		{
+			for(Student s:student)
+			{
+				s.student_info();
+			}
+		}
+	
+	}
+	public void search_student()
+	{
+		boolean found=false;
+		System.out.println("Enter student ID to search:");
+		int id=input.nextInt();
+		for(Student s:student)
+		{
+			
+			if(s.get_id()==id)
+			{
+				s.student_info();
+				found=true;
+				break;
+			}
+			
+		}
+		if(!found)
+		{
+			System.out.println("Student not found!");
+		}
+		
+	}
+	public void delete_student()
+	{
+		boolean found=false;
+		System.out.println("Enter student ID to delete:");
+		int id=input.nextInt();
+		for(int i=0;i<student.size();i++)
+		{
+			if(student.get(i).get_id()==id)
+			{
+				
+				student.remove(i);
+				System.out.println("Student deleted successfully!");
+				found=true;
+				break;
+			}
+			
+		}
+		if(!found)
+		{
+			System.out.println("Student not found!");
+		}
+	}
+	public void add_course()
+	{
+		System.out.println("Enter course code:");
+		String course_code=input.nextLine();
+		
+		System.out.println("Enter Course Title:");
+		String title=input.nextLine();
+		System.out.println("Ender Course Credit:");
+		double credit=input.nextDouble();
+		input.nextLine();
+		System.out.println("Enter Department:");
+		String dept=input.nextLine();
+		Department d=new Department(dept);
+		Course c=new Course(course_code,title,credit,d);
+		courses.add(c);
+		System.out.println("Course added successfully!");
+	}
+	public void show_courses()
+	{
+		if(courses.isEmpty())
+		{
+			System.out.println("No courses to show!");
+			return;
+		}
+		else
+		{
+			for(Course c:courses)
+			{
+				c.course_info();
+			}
+		}
+	}
+	public void enroll_students()
+	{
+		System.out.println("Enter Student ID to to be enrolled:");
+		int id=input.nextInt();
+		input.nextLine();
+		System.out.println("Enter course code to enroll:");
+		String c_code=input.nextLine();
+		Student f_std=null;
+		Course f_course=null;
+		for(Student s:student)
+		{
+			if(s.get_id()==id)
+			{
+				f_std=s;
+				break;
+			}
+		}
+		for(Course c:courses)
+		{
+			if(c.get_course_code().equals(c_code))
+			{
+				f_course=c;
+				break;
+			}
+		}
+		if(f_std!=null && f_course!=null)
+		{
+			f_std.add_course(f_course);
+			System.out.println("Student enrolled successfully!");
+		}
+		else
+		{
+			System.out.println("Course or student not found!");
+		}
+	}
+	
+	}
+
+
+package student_management_system;
+import java.util.Scanner;
+public class main {
+	public static void main(String args[])
+	{
+		Scanner input=new Scanner(System.in);
+		int choice;
+		functions f=new functions();
+		System.out.println("*****Menu*****");
+		System.out.println("1.Add Student\n 2.Show All Students\n 3.Search Student\n 4.Delete Student\n 5.Add Course\n 6.Show Courses\n 7.Enroll Students");
+		
+		while(true)
+		{
+			System.out.print("Enter your choice:");
+			choice=input.nextInt();
+			switch(choice)
+			{
+			case 1:
+				f.add_student();
+				break;
+			case 2:
+				f.show_all_students();
+				break;
+			case 3:
+				f.search_student();
+				break;
+			case 4:
+				f.delete_student();
+				break;
+			case 5:
+				f.add_course();
+				break;
+			case 6:
+				f.show_courses();
+				break;
+			case 7:
+				f.enroll_students();
+				break;
+			default:
+				System.out.println("Invalid choice! Please try again!");
+			}
+		}
+	}
+
+}
