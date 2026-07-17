@@ -1,0 +1,18 @@
+Design a class named Bike to represent a bike. The class contains:
+A public constant named DEFAULT_COLOR with the value "black".
+A private String data field named color that specifies the bike's color (the default is DEFAULT_COLOR).
+A private boolean data field named isInMotion that specifies whether the bike is in motion (the default is false).
+The accessor and mutator methods for both data fields.
+A no-argument constructor that creates a default bike.
+A method named toString() that returns a string description of the bike. 
+If the bike is in motion, the method returns "The bike is in motion, color: <color>".
+If the bike is not in motion, it returns "The bike is stationary, color: <color>".
+Write a test program in Java that creates two Bike objects:
+Set the first bike's color to "red" and set it to be in motion.
+Keep the second bike with default values.
+Display the objects by invoking their toString() method.
+Expected Output:
+The bike is in motion, color: red
+The bike is stationary, color: black
+
+
