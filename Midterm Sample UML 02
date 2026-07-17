@@ -1,0 +1,82 @@
+package UML2;
+
+public abstract class Employee {
+	public String name;
+	public String employeeid;
+	public Employee(String name,String employeeid)
+	{
+		this.name=name;
+		this.employeeid=employeeid;
+	}
+	public abstract double calculateSalary();
+
+}
+
+package UML2;
+
+public interface Payroll {
+public double calculateBonus();
+}
+
+package UML2;
+
+public class FullTimeEmployee extends Employee implements Payroll{
+	private double monthlysalary;
+	public FullTimeEmployee(String name,String employeeid,double monthlysalary)
+	{
+		super(name,employeeid);
+		this.monthlysalary=monthlysalary;
+	}
+	public String toString()
+	{
+		return "Name:"+name+"\nEmployee ID:"+employeeid+"\nMonthly salary:"+monthlysalary;
+	}
+	public double calculateBonus()
+	{
+		return monthlysalary*(1.5/100);
+	}
+	@Override
+	public double calculateSalary() {
+		
+		return monthlysalary;
+	}
+}
+
+
+package UML2;
+
+public class PartTimeEmployee extends Employee implements Payroll {
+	private double hourlyRate;
+	private int hoursWorked;
+	public PartTimeEmployee(String name,String employeeid,double hourlyRate,int hoursWorked)
+	{
+		super(name,employeeid);
+		this.hourlyRate=hourlyRate;
+		this.hoursWorked=hoursWorked;
+	}
+	public String toString()
+	{
+		return "Name:"+name+"\nEmployee ID:"+employeeid+"\nHourly Rate:"+hourlyRate+"\nHours Worked:"+hoursWorked+"Salary:"+calculateSalary();
+	}
+	public double calculateBonus()
+	{
+		return calculateSalary()*(1.5/100);
+	}
+	@Override
+	public double calculateSalary() {
+		
+		return hourlyRate*hoursWorked;
+	}
+}
+
+
+package UML2;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		PartTimeEmployee pte=new PartTimeEmployee("Tahameed Karim","101",500,5);
+		System.out.println(pte.toString());
+	}
+
+}
