@@ -61,6 +61,10 @@ public static void main(String[] args) {
 		{
 			System.out.println(e5.getMessage());
 		}
+		finally
+		{
+			System.out.println("Continue....");
+		}
 	}
 
 }
