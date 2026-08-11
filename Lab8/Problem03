@@ -1,0 +1,66 @@
+package Problem03;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+public class MutipleCatches {
+
+
+public static void main(String[] args) {
+		Scanner input=new Scanner(System.in);
+		int size;
+		String val;;
+		int mul=1;
+		try
+		{
+			System.out.println("Enter the size of the array:");
+			size=input.nextInt();
+			int ar[]=new int[size];
+			System.out.println("Enter the elements of the array:");
+			for(int i=0;i<size;i++)
+			{
+				val=input.next();
+				ar[i]=Integer.parseInt(val);
+			}
+			
+			if((size-3)<0)
+			{
+				
+				throw new ArrayIndexOutOfBoundsException("Array size can't be less than 3");
+				
+			}
+			System.out.println(ar[size-3]);
+			for(int i=0;i<size;i++)
+			{
+				
+				
+				if(ar[i]==0)
+				{
+					throw new ArithmeticException("Multiplier can't be zero!");
+				}
+				mul=mul*ar[i];
+				System.out.println("Multiplication result="+mul);
+				
+			}
+		}
+		catch(InputMismatchException e1)
+		{
+			System.out.println("Please enter a valid integer number as array size!");
+		}
+		catch(NumberFormatException e2)
+		{
+			System.out.println("Plese enter a valid integer number as array element!");
+		}
+		catch(ArrayIndexOutOfBoundsException e3)
+		{
+			System.out.println(e3.getMessage());
+		}
+		catch(ArithmeticException e4)
+		{
+			System.out.println(e4.getMessage());
+		}
+		catch(Exception e5)
+		{
+			System.out.println(e5.getMessage());
+		}
+	}
+
+}
